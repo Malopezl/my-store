@@ -6,7 +6,6 @@ _Este repositorio contiene la practica realizada en el curso._
 
 Este proyecto utiliza los siguientes paquetes:
 
-- [prettier] - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 - [express] - Fast, unopinionated, minimalist web framework for Node.js
 
 ## Installation
@@ -22,4 +21,3 @@ MIT
 
 [//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
 [express]: http://expressjs.com
-[prettier]: https://www.npmjs.com/package/prettier
