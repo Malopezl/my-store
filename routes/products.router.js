@@ -31,16 +31,23 @@ router.get('/:id', (req, res) => {
    * Ejemplo normal: const id = req.params.id;
    */
   const { id } = req.params;
-  res.json({
-    id,
-    name: 'Producto 1',
-    price: 1000
-  });
+
+  if (id === '999') {
+    res.status(404).json({
+      message: 'Not found'
+    });
+  } else {
+    res.status(200).json({
+      id,
+      name: 'Producto 1',
+      price: 1000
+    });
+  }
 });
 
 router.post('/', (req, res) => {
   const body = req.body;
-  res.json({
+  res.status(201).json({
     message: 'created',
     data: body,
   });
