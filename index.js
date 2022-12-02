@@ -1,6 +1,7 @@
 const express = require('express');
 const routerApi = require('./routes')
 require('dotenv').config({ path: './.env' });
+const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
 
@@ -15,6 +16,10 @@ app.get('/nueva-ruta', (req, res) => {
 });
 
 routerApi(app);
+
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log(`Escuchando en el puerto: ${process.env.PORT}`);
