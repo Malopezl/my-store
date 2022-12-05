@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const routerApi = require('./routes')
-require('dotenv').config({ path: './.env' });
+const routerApi = require('./routes');
+const { config } = require('./config/config');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 
 const app = express();
@@ -34,6 +34,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Escuchando en el puerto: ${process.env.PORT}`);
+app.listen(config.port, () => {
+  console.log(`Escuchando en el puerto: ${config.port}`);
 });
