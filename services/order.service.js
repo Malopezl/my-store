@@ -1,6 +1,10 @@
+const pool = require('../libs/postgres.pool');
+
 class OrderService {
 
   constructor() {
+    this.pool = pool;
+    this.pool.on('error', (err) => console.log(err));
   }
 
   async create(data) {
@@ -8,7 +12,8 @@ class OrderService {
   }
 
   async find() {
-    return [];
+    const res = await pool.query('SELECT * FROM tasks');
+    return res.rows;
   }
 
   async findOne(id) {
