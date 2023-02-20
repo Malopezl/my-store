@@ -14,6 +14,11 @@ class OrderService {
     return newOrder;
   }
 
+  async addItem(data) {
+    const newItem = await models.OrderProduct.create(data);
+    return newItem;
+  }
+
   async find() {
     const orders = await models.Order.findAll();
     return orders;
@@ -26,6 +31,17 @@ class OrderService {
         as: 'customer',
         include: ['user'],
         attributes: { exclude: ['userId'] }
+      }, {
+        association: 'items',
+        include: [{
+          model: models.Category,
+          as: 'category',
+          attributes: { exclude: ['id', 'image', 'createdAt'] }
+        }],
+        attributes: { exclude: ['createdAt'] },
+        through: {
+          attributes: ['id', 'amount']
+        }
       }],
       attributes: { exclude: ['customerId'] }
     });
