@@ -48,7 +48,7 @@ const OrderProductSchema = {
 
 class OrderProduct extends Model {
   //here we make the relations beetween models
-  static associate(models) {
+  static associate() {
     // this.belongsTo(models.Customer, { as: 'customer' });
   }
   static config(sequelize) {
