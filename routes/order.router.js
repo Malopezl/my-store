@@ -7,9 +7,13 @@ const { getOrderSchema, createOrderSchema, addItemSchema } = require('../dtos/or
 const router = express.Router();
 const service = new OrderService();
 
-router.get('/', async (req, res) => {
-  const products = await service.find();
-  res.json(products);
+router.get('/', async (req, res, next) => {
+  try {
+    const products = await service.find();
+    res.json(products);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /* Los endpoints especificos deben declararsen antes de los endpoints dinamicos. */
@@ -32,19 +36,27 @@ router.get('/:id',
 
 router.post('/',
   validatorHandler(createOrderSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newItem = await service.create(body);
-    res.status(201).json(newItem);
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newItem = await service.create(body);
+      res.status(201).json(newItem);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
 router.post('/items',
   validatorHandler(addItemSchema, 'body'),
-  async (req, res) => {
-    const body = req.body;
-    const newOrder = await service.addItem(body);
-    res.status(201).json(newOrder);
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newOrder = await service.addItem(body);
+      res.status(201).json(newOrder);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -64,10 +76,14 @@ router.post('/items',
 
 router.delete('/:id',
   validatorHandler(getOrderSchema, 'params'),
-  async (req, res) => {
-    const { id } = req.params;
-    const order = await service.delete(id);
-    res.json(order);
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const order = await service.delete(id);
+      res.json(order);
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

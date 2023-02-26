@@ -10,7 +10,6 @@ function errorHandler(err, req, res, next) {
     message: err.message,
     stack: err.stack,
   });
-  // next(err);
 }
 
 function boomErrorHandler(err, req, res, next) {
