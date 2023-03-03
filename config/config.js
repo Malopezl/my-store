@@ -13,6 +13,7 @@ const config = {
   mysqlPort: process.env.MYSQLPORT,
   mysqlUser: process.env.MYSQLUSER,
   apiKey: process.env.API_KEY,
+  secret: process.env.JWT_SECRET,
 }
 
 module.exports = { config };
