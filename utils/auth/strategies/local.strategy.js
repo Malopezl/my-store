@@ -7,7 +7,7 @@ const service = new UserService();
 
 const localStrategy = new Strategy({
   usernameField: 'email',
-  paawordField: 'password'
+  passwordField: 'password'
 }, async (email, password, done) => {
   try {
     const user = await service.findByEmail(email);
