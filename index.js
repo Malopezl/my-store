@@ -37,7 +37,7 @@ routerApi(app);
 app.use(logErrors);
 app.use(ormErrorHandler);
 app.use(boomErrorHandler);
-app.use(errorHandler);
+// app.use(errorHandler);
 
 app.listen(config.port, () => {
   console.log(`Escuchando en el puerto: ${config.port}`);
