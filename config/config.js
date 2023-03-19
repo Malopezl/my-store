@@ -14,6 +14,8 @@ const config = {
   mysqlUser: process.env.MYSQLUSER,
   apiKey: process.env.API_KEY,
   secret: process.env.JWT_SECRET,
+  smtpEmail: process.env.EMAIL,
+  smtpPassword: process.env.PWDMAIL,
 }
 
 module.exports = { config };
